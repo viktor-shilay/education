@@ -23,8 +23,8 @@ public class RoleServiceImpl implements RoleService {
         return roleRepository.findAll();
     }
 
-    public Long create(Role role){
+    public Role create(Role role){
         //add log
-        return roleRepository.save(role).getId();
+        return roleRepository.save(role);
     }
 }

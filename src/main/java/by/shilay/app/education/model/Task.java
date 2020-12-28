@@ -11,45 +11,40 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import java.util.Date;
 import java.util.List;
-
 
 @Data
 @Entity
-@Table(name = "users")
-public class User {
+@Table(name = "tasks")
+public class Task {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id")
+    @Column(name = "task_id")
     private Long id;
 
-    @Column(name = "first_name")
-    private String firstName;
+    @Column(name = "task_name")
+    private String taskName;
 
-    @Column(name = "last_name")
-    private String lastName;
+    @Column(name = "creation_date")
+    private Date creationDate;
 
-    @Column(name = "email")
-    private String email;
+    @Column(name = "update_date")
+    private Date updateDate;
 
-    @Column(name = "password")
-    private String password;
+    @Column(name = "due_date")
+    private Date dueDate;
 
-    @Column(name = "is_blocked")
-    private Integer isBlocked;
+    @Column(name = "description")
+    private String description;
 
     @ManyToOne
-    @JoinColumn(name = "role_id")
-    private Role role;
-
-    /*@ManyToOne
     @JoinColumn(name = "material_id")
-    private Material material;*/
+    private Material material;
 
-/*    @OneToOne
-    @JoinColumn(name = "group")
-    private UserIdGroup group;*/
+    //@JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private List<Review> reviews;
 }
