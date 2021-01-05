@@ -56,7 +56,6 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<UserTasks> userTasks;
 
-    @ManyToOne
-    @JoinColumn(name = "material_id")
-    private Material material;
+    @OneToMany(mappedBy = "user")
+    private List<Material> material;
 }

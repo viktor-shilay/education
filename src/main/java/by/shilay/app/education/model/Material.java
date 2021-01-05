@@ -44,8 +44,8 @@ public class Material {
     @JoinColumn(name = "discipline_id")
     private Discipline discipline;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "material")
-    private List<User> users;
+    @ManyToOne
+    @JoinColumn(name = "author")
+    private User user;
 
 }
