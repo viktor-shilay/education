@@ -1,0 +1,34 @@
+package by.shilay.app.education.controller;
+
+import by.shilay.app.education.model.Discipline;
+import by.shilay.app.education.service.api.DisciplineService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+
+@RestController
+@RequestMapping(value = "/disciplines")
+public class DisciplineController {
+
+    private final DisciplineService disciplineService;
+
+    @Autowired
+    public DisciplineController(DisciplineService disciplineService) {
+        this.disciplineService = disciplineService;
+    }
+
+    @GetMapping
+    public List<Discipline> getAll(){
+        return disciplineService.findAll();
+    }
+
+    @PostMapping
+    public Discipline create(@RequestBody Discipline discipline){
+        return disciplineService.create(discipline);
+    }
+}

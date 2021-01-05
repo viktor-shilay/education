@@ -1,6 +1,5 @@
 package by.shilay.app.education.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.Column;
@@ -44,7 +43,10 @@ public class Task {
     @JoinColumn(name = "material_id")
     private Material material;
 
-    //@JsonIgnore
     @OneToMany(mappedBy = "user")
     private List<Review> reviews;
+
+    @OneToMany(mappedBy = "task")
+    private List<UserTasks> userTasks;
+
 }

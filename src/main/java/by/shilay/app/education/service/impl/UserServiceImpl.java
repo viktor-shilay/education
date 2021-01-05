@@ -1,6 +1,6 @@
 package by.shilay.app.education.service.impl;
 
-import by.shilay.app.education.dto.UserDto;
+import by.shilay.app.education.dto.UserDTO;
 import by.shilay.app.education.model.User;
 import by.shilay.app.education.repository.UserRepository;
 import by.shilay.app.education.service.api.UserService;
@@ -21,13 +21,13 @@ public class UserServiceImpl implements UserService {
         this.userRepository = userRepository;
     }
 
-    public List<UserDto> findAll() {
+    public List<UserDTO> findAll() {
         //add log
         List<User> users = userRepository.findAll();
-        List<UserDto> userDtos = new ArrayList<>();
+        List<UserDTO> userDtos = new ArrayList<>();
         for (User user: users){
-            UserDto userDto = new UserDto(user.getId(), user.getFirstName(), user.getLastName());
-            userDtos.add(userDto);
+            UserDTO userDTO = new UserDTO(user.getId(), user.getFirstName(), user.getLastName());
+            userDtos.add(userDTO);
         }
         return userDtos;
     }
@@ -42,11 +42,6 @@ public class UserServiceImpl implements UserService {
     public User create(User user) {
         //add log
         return userRepository.save(user);
-    }
-
-    @Override
-    public User update(Long id, User user) {
-        return null;
     }
 
     @Override

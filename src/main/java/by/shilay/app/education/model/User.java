@@ -1,6 +1,5 @@
 package by.shilay.app.education.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.Column;
@@ -45,11 +44,19 @@ public class User {
     @JoinColumn(name = "role_id")
     private Role role;
 
-    /*@ManyToOne
-    @JoinColumn(name = "material_id")
-    private Material material;*/
+    @OneToOne(mappedBy = "user")
+    private UserIdGroup userIdGroup;
 
-/*    @OneToOne
-    @JoinColumn(name = "group")
-    private UserIdGroup group;*/
+    @OneToOne(mappedBy = "admin")
+    private UserHistory admin;
+
+    @OneToOne(mappedBy = "targetUser")
+    private UserHistory targetUser;
+
+    @OneToMany(mappedBy = "user")
+    private List<UserTasks> userTasks;
+
+    @ManyToOne
+    @JoinColumn(name = "material_id")
+    private Material material;
 }

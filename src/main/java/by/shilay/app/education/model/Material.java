@@ -44,7 +44,8 @@ public class Material {
     @JoinColumn(name = "discipline_id")
     private Discipline discipline;
 
-    /*@OneToMany(mappedBy = "material")
-    private List<User> users;*/
+    @JsonIgnore
+    @OneToMany(mappedBy = "material")
+    private List<User> users;
 
 }

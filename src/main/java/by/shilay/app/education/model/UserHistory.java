@@ -4,28 +4,35 @@ import lombok.Data;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.util.Date;
 
-/*@Data
+@Data
 @Entity
-@Table(name = "users_history")*/
+@Table(name = "users_history")
 public class UserHistory {
 
-/*    @Column
+    @Id
+    @Column
+    private Long id;
+
+    @Column(name = "date")
     private Date date;
 
-    @Column
+    @Column(name = "reason")
     private String reason;
 
-    @ManyToOne
-    @JoinColumn (name = "admin")
-    private User userAdmin;
+    @OneToOne
+    @MapsId
+    @JoinColumn(name = "admin")
+    private User admin;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn (name = "target_user")
-    private User targetUser;*/
+    private User targetUser;
 
 }
