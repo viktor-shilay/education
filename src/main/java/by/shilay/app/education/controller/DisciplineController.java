@@ -4,12 +4,14 @@ import by.shilay.app.education.model.Discipline;
 import by.shilay.app.education.service.api.DisciplineService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/disciplines")
@@ -25,6 +27,11 @@ public class DisciplineController {
     @GetMapping
     public List<Discipline> getAll(){
         return disciplineService.findAll();
+    }
+
+    @GetMapping("/{id}")
+    public Optional<Discipline> getOne(@PathVariable("id") Long id){
+        return disciplineService.findOne(id);
     }
 
     @PostMapping

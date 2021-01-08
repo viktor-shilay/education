@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MaterialServiceImpl implements MaterialService {
@@ -21,6 +22,11 @@ public class MaterialServiceImpl implements MaterialService {
     @Override
     public List<Material> findAll() {
         return materialRepository.findAll();
+    }
+
+    @Override
+    public Optional<Material> findOne(Long id) {
+        return materialRepository.findAllById(id);
     }
 
     @Override

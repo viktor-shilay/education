@@ -26,14 +26,15 @@ public class UserServiceImpl implements UserService {
         List<User> users = userRepository.findAll();
         List<UserDTO> userDtos = new ArrayList<>();
         for (User user: users){
-            UserDTO userDTO = new UserDTO(user.getId(), user.getFirstName(), user.getLastName());
+            UserDTO userDTO = new UserDTO(user.getId(), user.getFirstName(), user.getLastName(),
+                    user.getEmail(), user.getRole(), user.getUserGroup());
             userDtos.add(userDTO);
         }
         return userDtos;
     }
 
     @Override
-    public Optional<User> findById(Long id) {
+    public Optional<User> findOne(Long id) {
         //add log
         return userRepository.findById(id);
     }
