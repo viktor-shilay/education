@@ -1,16 +1,17 @@
 package by.shilay.app.education.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.util.List;
 
@@ -44,18 +45,27 @@ public class User {
     @JoinColumn(name = "role_id")
     private Role role;
 
-    @OneToOne(mappedBy = "user")
-    private UserIdGroup userIdGroup;
+    @ManyToOne
+    @JoinColumn(name = "user_group_id")
+    private UserGroup userGroup;
 
-    @OneToOne(mappedBy = "admin")
-    private UserHistory admin;
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<Discipline> disciplines;
 
-    @OneToOne(mappedBy = "targetUser")
-    private UserHistory targetUser;
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<Material> materials;
 
-    @OneToMany(mappedBy = "user")
-    private List<UserTasks> userTasks;
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<Review> reviews;
 
-    @OneToMany(mappedBy = "user")
-    private List<Material> material;
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<UserTasks> usersTasks;
+
+    @OneToMany(mappedBy = "targetUser", fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<UserHistory> userHistories;
 }

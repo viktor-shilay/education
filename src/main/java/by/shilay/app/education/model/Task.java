@@ -1,9 +1,11 @@
 package by.shilay.app.education.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -43,10 +45,12 @@ public class Task {
     @JoinColumn(name = "material_id")
     private Material material;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Review> reviews;
 
-    @OneToMany(mappedBy = "task")
-    private List<UserTasks> userTasks;
+    @OneToMany(mappedBy = "task", fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<UserTasks> usersTasks;
 
 }

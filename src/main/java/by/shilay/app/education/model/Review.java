@@ -34,4 +34,12 @@ public class Review {
     @ManyToOne
     @JoinColumn(name = "reviewer")
     private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "material_id")
+    private Material material;
+
+    @ManyToOne
+    @JoinColumn(name = "task_id")
+    private Task task;
 }

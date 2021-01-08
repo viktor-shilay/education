@@ -9,36 +9,24 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.List;
 
 @Data
 @Entity
-@Table(name = "disciplines")
-public class Discipline {
+@Table(name = "users_group")
+public class UserGroup {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "discipline_id")
+    @Column(name = "user_group_id")
     private Long id;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "group")
+    private String group;
 
-    @Column(name = "short_name")
-    private String shortName;
-
-    @Column(name = "description")
-    private String description;
-
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
-
-    @OneToMany(mappedBy = "discipline", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "userGroup", fetch = FetchType.LAZY)
     @JsonIgnore
-    private List<Material> materials;
+    private List<User> users;
 }

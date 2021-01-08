@@ -5,6 +5,7 @@ import lombok.Data;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -37,9 +38,6 @@ public class Material {
     @Column(name = "description")
     private String description;
 
-    @OneToMany(mappedBy = "review")
-    private List<Review> reviews;
-
     @ManyToOne
     @JoinColumn(name = "discipline_id")
     private Discipline discipline;
@@ -47,5 +45,13 @@ public class Material {
     @ManyToOne
     @JoinColumn(name = "author")
     private User user;
+
+    @OneToMany(mappedBy = "material", fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<Review> reviews;
+
+    @OneToMany(mappedBy = "material", fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<Task> tasks;
 
 }
