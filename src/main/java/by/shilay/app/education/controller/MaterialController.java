@@ -29,7 +29,7 @@ public class MaterialController {
         return materialService.findAll();
     }
 
-    @GetMapping("/{id")
+    @GetMapping("/{id}")
     public Optional<Material> getOne(@PathVariable("id") Long id){
         return materialService.findOne(id);
     }
