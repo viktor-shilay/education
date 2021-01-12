@@ -27,7 +27,19 @@ public class UserServiceImpl implements UserService {
         List<UserDTO> userDtos = new ArrayList<>();
         for (User user: users){
             UserDTO userDTO = new UserDTO(user.getId(), user.getFirstName(), user.getLastName(),
-                    user.getEmail(), user.getRole(), user.getUserGroup());
+                    user.getEmail(),user.getIsBlocked());
+            userDtos.add(userDTO);
+        }
+        return userDtos;
+    }
+
+    @Override
+    public List<UserDTO> findByLastNameContaining(String lastName) {
+        List<User> users = userRepository.findByLastNameContaining(lastName);
+        List<UserDTO> userDtos = new ArrayList<>();
+        for (User user: users){
+            UserDTO userDTO = new UserDTO(user.getId(), user.getFirstName(), user.getLastName(),
+                    user.getEmail(),user.getIsBlocked());
             userDtos.add(userDTO);
         }
         return userDtos;

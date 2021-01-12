@@ -39,7 +39,7 @@ public class User {
     private String password;
 
     @Column(name = "is_blocked")
-    private Integer isBlocked;
+    private Boolean isBlocked;
 
     @ManyToOne
     @JoinColumn(name = "role_id")
