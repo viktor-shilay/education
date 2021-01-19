@@ -21,7 +21,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping(value = "/users")
 public class UserController {
@@ -68,12 +67,12 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<User> createUser(@RequestBody User user){
-        User userData = userService.create(user);
+    public ResponseEntity<User> createUser(@RequestBody UserDTO userDTO){
+        User userData = userService.create(userDTO);
         return new ResponseEntity<>(userData, HttpStatus.OK);
     }
 
-    @PutMapping("/{id}")
+    /*@PutMapping("/{id}")
     public ResponseEntity<User> updateUser(@PathVariable("id") Long id, @RequestBody User user) {
         Optional<User> userData = userService.findByUserId(id);
         if (userData.isPresent()){
@@ -81,13 +80,12 @@ public class UserController {
             updUser.setFirstName(user.getFirstName());
             updUser.setLastName(user.getLastName());
             updUser.setEmail(user.getEmail());
-            updUser.setIsBlocked(user.getIsBlocked());
+            updUser.setBlocked(user.isBlocked());
             return new ResponseEntity<>(userService.create(updUser), HttpStatus.OK);
         }else {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-
-    }
+    }*/
 
     @DeleteMapping("/{id}")
     public ResponseEntity<HttpStatus> deleteUser(@PathVariable("id") Long id){

@@ -1,8 +1,10 @@
 package by.shilay.app.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.sun.istack.NotNull;
 import lombok.Data;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -39,7 +41,7 @@ public class User {
     private String password;
 
     @Column(name = "is_blocked")
-    private Boolean isBlocked;
+    private boolean isBlocked;
 
     @ManyToOne
     @JoinColumn(name = "role_id")

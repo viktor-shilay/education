@@ -11,6 +11,6 @@ public interface UserService {
     List<UserDTO> findByFirstNameOrLastNameContaining(String firstName, String lastName);
     Optional<User> findByUserId(Long id);
     Optional<User> findByEmail(String email);
-    User create(User user);
+    User create(UserDTO userDTO);
     void delete(Long id);
 }

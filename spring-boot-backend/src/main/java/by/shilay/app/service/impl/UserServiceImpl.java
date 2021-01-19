@@ -3,6 +3,7 @@ package by.shilay.app.service.impl;
 import by.shilay.app.dto.UserDTO;
 import by.shilay.app.model.User;
 import by.shilay.app.repository.UserRepository;
+import by.shilay.app.service.api.RoleService;
 import by.shilay.app.service.api.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,10 +16,12 @@ import java.util.Optional;
 public class UserServiceImpl implements UserService {
     
     private final UserRepository userRepository;
+    private final RoleService roleService;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository) {
+    public UserServiceImpl(UserRepository userRepository, RoleService roleService) {
         this.userRepository = userRepository;
+        this.roleService = roleService;
     }
 
     public List<UserDTO> findAll() {
@@ -27,7 +30,7 @@ public class UserServiceImpl implements UserService {
         List<UserDTO> userDtos = new ArrayList<>();
         for (User user: users){
             UserDTO userDTO = new UserDTO(user.getId(), user.getFirstName(), user.getLastName(),
-                    user.getEmail(),user.getIsBlocked());
+                    user.getEmail(),user.getPassword(),user.isBlocked());
             userDtos.add(userDTO);
         }
         return userDtos;
@@ -39,7 +42,7 @@ public class UserServiceImpl implements UserService {
         List<UserDTO> userDtos = new ArrayList<>();
         for (User user: users){
             UserDTO userDTO = new UserDTO(user.getId(), user.getFirstName(), user.getLastName(),
-                    user.getEmail(),user.getIsBlocked());
+                    user.getEmail(),user.getPassword(),user.isBlocked());
             userDtos.add(userDTO);
         }
         return userDtos;
@@ -57,8 +60,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User create(User user) {
+    public User create(UserDTO userDTO) {
         //add log
+        User user = new User();
+        user.setId(userDTO.getId());
+        user.setFirstName(userDTO.getFirstName());
+        user.setLastName(userDTO.getLastName());
+        user.setEmail(userDTO.getEmail());
+        user.setPassword(userDTO.getPassword());
+        user.setBlocked(userDTO.isBlocked());
+        user.setRole(roleService.getByName("ROLE_STUDENT"));
         return userRepository.save(user);
     }
 

@@ -3,6 +3,7 @@ package by.shilay.app.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -26,7 +27,7 @@ public class Role {
     @Column(name = "role")
     private String role;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "role", fetch = FetchType.LAZY)
+    @JsonIgnore()
+    @OneToMany(mappedBy = "role", cascade = CascadeType.ALL)
     private List<User> users;
 }
