@@ -19,7 +19,7 @@ public class UserDetailsImpl implements UserDetails {
     public UserDetailsImpl(User user) {
         this.email = user.getEmail();
         this.password = user.getPassword();
-        this.isBlocked = user.getIsBlocked();
+        this.isBlocked = user.isBlocked();
         this.role = user.getRole();
     }
 

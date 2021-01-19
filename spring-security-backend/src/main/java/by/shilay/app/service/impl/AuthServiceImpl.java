@@ -24,7 +24,8 @@ public class AuthServiceImpl implements AuthService {
     private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public AuthServiceImpl(RestTemplate restTemplate, AuthenticationManager authenticationManager, JwtTokenProvider jwtTokenProvider, PasswordEncoder passwordEncoder) {
+    public AuthServiceImpl(RestTemplate restTemplate, AuthenticationManager authenticationManager,
+                           JwtTokenProvider jwtTokenProvider, PasswordEncoder passwordEncoder) {
         this.restTemplate = restTemplate;
         this.authenticationManager = authenticationManager;
         this.jwtTokenProvider = jwtTokenProvider;
@@ -40,8 +41,8 @@ public class AuthServiceImpl implements AuthService {
                 )
         );
         String token = jwtTokenProvider.generateJwtToken(authentication);
-        //User user = restTemplate.getForObject(URLConstants.USERS_URL + "/email/" + authRequest.getEmail(), User.class);
-        return new AuthResponse(token);
+        User user = restTemplate.getForObject(URLConstants.USERS_URL + "/email/" + authRequest.getEmail(), User.class);
+        return new AuthResponse(token, user.getFirstName(), user.getLastName(), user.getEmail(), user.getRole().getRole());
     }
 
     @Override
