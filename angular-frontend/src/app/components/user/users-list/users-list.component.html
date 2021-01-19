@@ -4,14 +4,14 @@
       <input
         type="text"
         class="form-control"
-        placeholder="Search by last name"
-        [(ngModel)]="lastName"
+        placeholder="Search by first or last name"
+        [(ngModel)]="name"
       />
       <div class="input-group-append">
         <button
           class="btn btn-outline-secondary"
           type="button"
-          (click)="searchLastName()"
+          (click)="searchName()"
         >
           Search
         </button>
@@ -30,10 +30,7 @@
         {{ user.firstName }} {{ user.lastName }}
       </li>
     </ul>
-
-    <button class="m-3 btn btn-sm btn-danger" (click)="removeAllUsers()">
-      Remove All
-    </button>
+cd
   </div>
   <div class="col-md-6">
     <div *ngIf="currentUser">

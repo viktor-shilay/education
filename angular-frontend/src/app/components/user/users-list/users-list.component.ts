@@ -14,7 +14,7 @@ export class UsersListComponent implements OnInit {
   users?: User[];
   currentUser?: User;
   currentIndex = -1;
-  lastName = '';
+  name = '';
 
   ngOnInit(): void {
     this.retrieveUsers();
@@ -40,23 +40,11 @@ export class UsersListComponent implements OnInit {
     this.currentIndex = index;
   }
 
-  removeAllUsers(): void {
-    this.userService.deleteAll()
-      .subscribe(
-        response => {
-          console.log(response);
-          this.refreshList();
-        },
-        error => {
-          console.log(error);
-        });
-  }
-
-  searchLastName(): void {
+  searchName(): void {
     this.currentUser = undefined;
     this.currentIndex = -1;
 
-    this.userService.findByLastName(this.lastName)
+    this.userService.findByName(this.name)
       .subscribe(
         data => {
           this.users = data;
