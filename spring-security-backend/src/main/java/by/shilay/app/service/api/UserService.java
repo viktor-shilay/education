@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface UserService {
     List<User> getAll();
-
-    User getOne(String email);
+    List<User> findByFirstNameOrLastNameContaining(String name);
+    User getByEmail(String email);
+    User getById(Long id);
 }

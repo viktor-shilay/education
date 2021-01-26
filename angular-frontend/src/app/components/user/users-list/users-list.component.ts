@@ -29,12 +29,6 @@ export class UsersListComponent implements OnInit {
     });
   }
 
-  refreshList(): void {
-    this.retrieveUsers();
-    this.currentUser = undefined;
-    this.currentIndex = -1;
-  }
-
   setActiveUser(user: User, index: number): void {
     this.currentUser = user;
     this.currentIndex = index;

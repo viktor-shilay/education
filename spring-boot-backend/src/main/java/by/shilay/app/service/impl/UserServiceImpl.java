@@ -1,6 +1,6 @@
 package by.shilay.app.service.impl;
 
-import by.shilay.app.dto.UserDTO;
+import by.shilay.app.dto.UserDto;
 import by.shilay.app.model.User;
 import by.shilay.app.repository.UserRepository;
 import by.shilay.app.service.api.RoleService;
@@ -24,12 +24,12 @@ public class UserServiceImpl implements UserService {
         this.roleService = roleService;
     }
 
-    public List<UserDTO> findAll() {
+    public List<UserDto> findAll() {
         //add log
         List<User> users = userRepository.findAll();
-        List<UserDTO> userDtos = new ArrayList<>();
+        List<UserDto> userDtos = new ArrayList<>();
         for (User user: users){
-            UserDTO userDTO = new UserDTO(user.getId(), user.getFirstName(), user.getLastName(),
+            UserDto userDTO = new UserDto(user.getId(), user.getFirstName(), user.getLastName(),
                     user.getEmail(),user.getPassword(),user.isBlocked());
             userDtos.add(userDTO);
         }
@@ -37,11 +37,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserDTO> findByFirstNameOrLastNameContaining(String firstName, String lastName) {
+    public List<UserDto> findByFirstNameOrLastNameContaining(String firstName, String lastName) {
         List<User> users = userRepository.findByFirstNameOrLastNameContaining(firstName, lastName);
-        List<UserDTO> userDtos = new ArrayList<>();
+        List<UserDto> userDtos = new ArrayList<>();
         for (User user: users){
-            UserDTO userDTO = new UserDTO(user.getId(), user.getFirstName(), user.getLastName(),
+            UserDto userDTO = new UserDto(user.getId(), user.getFirstName(), user.getLastName(),
                     user.getEmail(),user.getPassword(),user.isBlocked());
             userDtos.add(userDTO);
         }
@@ -60,7 +60,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User create(UserDTO userDTO) {
+    public User create(UserDto userDTO) {
         //add log
         User user = new User();
         user.setId(userDTO.getId());

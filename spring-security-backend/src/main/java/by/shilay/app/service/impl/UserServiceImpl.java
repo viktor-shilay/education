@@ -23,21 +23,26 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> getAll() {
-        try {
-            return restTemplate.getForObject(URLConstants.USERS_URL, List.class);
-        } catch (Exception ex) {
-            log.error("Method getAll() error: " + ex);
-            throw new RuntimeException(ex);
-        }
+        return restTemplate.getForObject(URLConstants.USERS_URL, List.class);
     }
 
     @Override
-    public User getOne(String email) {
+    public List<User> findByFirstNameOrLastNameContaining(String name) {
+        return restTemplate.getForObject(URLConstants.USERS_URL + "?name=" + name, List.class);
+    }
+
+    @Override
+    public User getByEmail(String email) {
         try {
             return restTemplate.getForObject(URLConstants.USERS_URL + "/email/" + email, User.class);
         } catch (Exception ex) {
             log.error("User method getOne() error: " + ex);
             throw new RuntimeException(ex);
         }
+    }
+
+    @Override
+    public User getById(Long id) {
+        return restTemplate.getForObject(URLConstants.USERS_URL + "/" + id, User.class);
     }
 }

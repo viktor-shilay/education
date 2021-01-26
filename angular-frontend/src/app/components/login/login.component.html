@@ -14,7 +14,7 @@
         <label for="password">Password</label>
         <input type="password" class="form-control" name="password"
                [(ngModel)]="form.password" required minlength="6" #password="ngModel"/>
-        <div class="alert alert-danger" role="alert"*ngIf="password.errors && f.submitted">
+        <div class="alert alert-danger" role="alert" *ngIf="password.errors && f.submitted">
           <div *ngIf="password.errors.required">
             Password is required
           </div>

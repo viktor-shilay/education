@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {UserService} from '../../services/user/user.service';
+import {DisciplineService} from '../../services/discipline/discipline.service';
+import {Discipline} from '../../models/discipline/discipline';
 
 @Component({
   selector: 'app-page-professor',
@@ -7,17 +8,20 @@ import {UserService} from '../../services/user/user.service';
   styleUrls: ['./page-professor.component.css']
 })
 export class PageProfessorComponent implements OnInit {
-  content?: string;
-
-  constructor(private userService: UserService) { }
+  disciplines?: Discipline[];
+  page = 1;
+  size = 10;
+  constructor(private disciplineService: DisciplineService) { }
 
   ngOnInit(): void {
-    this.userService.getProfessorPage().subscribe(
+    this.retrieveDisciplines();
+  }
+
+  retrieveDisciplines(){
+    this.disciplineService.getAll(this.page, this.size).subscribe(
       data => {
-        this.content = data;
-      },
-      err => {
-        this.content = JSON.parse(err.error).message;
+        // @ts-ignore
+        this.disciplines = data.content;
       }
     );
   }

@@ -10,10 +10,6 @@
       </li>
     </div>
   </nav>
-
-  <div class="container mt-3">
-    <router-outlet></router-outlet>
-  </div>
 </div>-->
 
 <div id="app">
@@ -25,6 +21,9 @@
       </li>
       <li class="nav-item" *ngIf="showAdminPage">
         <a href="/admin" class="nav-link" routerLink="admin">Admin Page</a>
+      </li>
+      <li class="nav-item" *ngIf="showAdminPage">
+        <a href="/users" class="nav-link" routerLink="users">Users</a>
       </li>
       <li class="nav-item" *ngIf="showProfessorPage">
         <a href="/professor" class="nav-link" routerLink="professor">Professor Page</a>
@@ -59,7 +58,6 @@
     <router-outlet></router-outlet>
   </div>
 </div>
-
 
 <footer class="footer">
   <div class="container">

@@ -21,5 +21,4 @@ export class PageStudentComponent implements OnInit {
       }
     );
   }
-
 }

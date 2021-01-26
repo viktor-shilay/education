@@ -7,5 +7,4 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/users-history")
 public class UserHistoryController {
 
-
 }
