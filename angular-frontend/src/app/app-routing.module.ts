@@ -10,11 +10,14 @@ import {ProfileComponent} from './components/profile/profile.component';
 import {PageAdminComponent} from './components/page-admin/page-admin.component';
 import {PageProfessorComponent} from './components/page-professor/page-professor.component';
 import {PageStudentComponent} from './components/page-student/page-student.component';
+import {DisciplinesListComponent} from './components/disciplines/disciplines-list/disciplines-list.component';
 
 const routes: Routes = [
+  { path: '', redirectTo: 'home', pathMatch: 'full'},
   { path: 'users', component: UsersListComponent},
   { path: 'users/:id', component: UserDetailsComponent},
   { path: 'add', component: AddUserComponent},
+
 
   { path: 'home', component: HomeComponent},
   { path: 'login', component: LoginComponent},
@@ -24,7 +27,8 @@ const routes: Routes = [
   { path: 'professor', component: PageProfessorComponent},
   { path: 'student', component: PageStudentComponent},
   { path: 'teacher', component: PageStudentComponent},
-  { path: '', redirectTo: 'home', pathMatch: 'full'}
+  { path: 'disciplines/user', component: DisciplinesListComponent}
+  // { path: '**', component: NotFoundComponent},
 ];
 
 @NgModule({

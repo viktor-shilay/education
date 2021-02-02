@@ -3,4 +3,5 @@ export class Discipline {
   name?: string;
   shortName?: string;
   description?: string;
+  userId?: number;
 }

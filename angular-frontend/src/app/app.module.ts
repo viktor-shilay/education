@@ -17,6 +17,9 @@ import { HomeComponent } from './components/home/home.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { RegisterComponent } from './components/register/register.component';
 import {authInterceptorProviders} from './services/auth/auth.interceptor';
+import { AddDisciplineComponent } from './components/disciplines/add-discipline/add-discipline.component';
+import { DisciplineDetailsComponent } from './components/disciplines/discipline-details/discipline-details.component';
+import { DisciplinesListComponent } from './components/disciplines/disciplines-list/disciplines-list.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +35,9 @@ import {authInterceptorProviders} from './services/auth/auth.interceptor';
     HomeComponent,
     ProfileComponent,
     RegisterComponent,
+    AddDisciplineComponent,
+    DisciplineDetailsComponent,
+    DisciplinesListComponent,
   ],
   imports: [
     BrowserModule,

@@ -45,4 +45,10 @@ export class LoginComponent implements OnInit {
   reloadPage(): void {
     window.location.reload();
   }
+
+  redirect(): void {
+    setTimeout(() => {
+      window.location.href = 'home';
+    }, 1000);
+  }
 }
