@@ -1,5 +1,6 @@
 package by.shilay.app.service.api;
 
+import by.shilay.app.dto.MaterialDto;
 import by.shilay.app.model.Material;
 
 import java.util.List;
@@ -9,4 +10,6 @@ public interface MaterialService {
     Material create(Material material);
     List<Material> findAll();
     Optional<Material> findOne(Long id);
+    List<MaterialDto> findByAuthor(Long author);
+    List<MaterialDto> findByDiscipline(Long id);
 }

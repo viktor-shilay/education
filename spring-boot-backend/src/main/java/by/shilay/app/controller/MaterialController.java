@@ -1,8 +1,12 @@
 package by.shilay.app.controller;
 
+import by.shilay.app.dto.MaterialDto;
 import by.shilay.app.model.Material;
 import by.shilay.app.service.api.MaterialService;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,18 +29,47 @@ public class MaterialController {
     }
 
     @GetMapping
-    public List<Material> getAll(){
-        return materialService.findAll();
+    public ResponseEntity<List<Material>> getAll(){
+        try{
+            return new ResponseEntity<>(materialService.findAll(), HttpStatus.OK);
+        }catch (RuntimeException ex){
+            throw new RuntimeException(ex);
+        }
     }
 
     @GetMapping("/{id}")
-    public Optional<Material> getOne(@PathVariable("id") Long id){
-        return materialService.findOne(id);
+    public ResponseEntity<Optional<Material>> getOne(@PathVariable("id") Long id){
+        try{
+            return new ResponseEntity<>(materialService.findOne(id), HttpStatus.OK);
+        }catch (RuntimeException ex){
+            throw new RuntimeException(ex);
+        }
+    }
+
+    @GetMapping("/author/{id}")
+    public ResponseEntity<List<MaterialDto>> getAllByAuthor(@PathVariable("id") Long id){
+        try{
+            return new ResponseEntity<>(materialService.findByAuthor(id), HttpStatus.OK);
+        }catch (RuntimeException ex){
+            throw new RuntimeException(ex);
+        }
+    }
+
+    @GetMapping("/discipline/{id}")
+    public ResponseEntity<List<MaterialDto>> getAllByDiscipline(@PathVariable("id") Long id){
+        try{
+            return new ResponseEntity<>(materialService.findByDiscipline(id), HttpStatus.OK);
+        }catch (Exception ex){
+            throw new RuntimeException(ex);
+        }
     }
 
     @PostMapping
-    public Material create(@RequestBody Material material){
-        return materialService.create(material);
+    public ResponseEntity<Material> create(@RequestBody Material material){
+        try{
+            return new ResponseEntity<>(materialService.create(material), HttpStatus.OK);
+        }catch (RuntimeException ex){
+            throw new RuntimeException(ex);
+        }
     }
-
 }

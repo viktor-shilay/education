@@ -4,6 +4,7 @@ import by.shilay.app.dto.UserDto;
 import by.shilay.app.model.User;
 import by.shilay.app.repository.UserRepository;
 import by.shilay.app.service.api.RoleService;
+import by.shilay.app.service.api.UserGroupService;
 import by.shilay.app.service.api.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,64 +18,109 @@ public class UserServiceImpl implements UserService {
     
     private final UserRepository userRepository;
     private final RoleService roleService;
+    private final UserGroupService userGroupService;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository, RoleService roleService) {
+    public UserServiceImpl(UserRepository userRepository, RoleService roleService, UserGroupService userGroupService) {
         this.userRepository = userRepository;
         this.roleService = roleService;
+        this.userGroupService = userGroupService;
     }
 
     public List<UserDto> findAll() {
-        //add log
         List<User> users = userRepository.findAll();
-        List<UserDto> userDtos = new ArrayList<>();
-        for (User user: users){
-            UserDto userDTO = new UserDto(user.getId(), user.getFirstName(), user.getLastName(),
-                    user.getEmail(),user.getPassword(),user.isBlocked());
-            userDtos.add(userDTO);
-        }
-        return userDtos;
+        return transferToListDto(users);
     }
 
     @Override
     public List<UserDto> findByFirstNameOrLastNameContaining(String firstName, String lastName) {
         List<User> users = userRepository.findByFirstNameOrLastNameContaining(firstName, lastName);
-        List<UserDto> userDtos = new ArrayList<>();
-        for (User user: users){
-            UserDto userDTO = new UserDto(user.getId(), user.getFirstName(), user.getLastName(),
-                    user.getEmail(),user.getPassword(),user.isBlocked());
-            userDtos.add(userDTO);
+        return transferToListDto(users);
+    }
+
+    @Override
+    public List<UserDto> getAllUsers(String name) {
+        List<UserDto> users = new ArrayList<>();
+        if (name == null){
+            users.addAll(findAll());
+        }else {
+            users.addAll(findByFirstNameOrLastNameContaining(name, name));
         }
-        return userDtos;
+        if (users.isEmpty()){
+            return null;
+        }
+        return users;
     }
 
     @Override
-    public Optional<User> findByUserId(Long id) {
-        //add log
-        return userRepository.findById(id);
+    public User getByUserId(Long id) {
+        Optional<User> userData = userRepository.findById(id);
+        if(userData.isPresent()){
+            return userData.get();
+        }else {
+            return null;
+        }
     }
 
     @Override
-    public Optional<User> findByEmail(String email) {
-        return userRepository.findByEmail(email);
+    public User getByEmail(String email) {
+        Optional<User> userData = userRepository.findByEmail(email);
+        if (userData.isPresent()){
+            return userData.get();
+        }else {
+            return null;
+        }
     }
 
     @Override
     public User create(UserDto userDTO) {
-        //add log
-        User user = new User();
-        user.setId(userDTO.getId());
-        user.setFirstName(userDTO.getFirstName());
-        user.setLastName(userDTO.getLastName());
-        user.setEmail(userDTO.getEmail());
-        user.setPassword(userDTO.getPassword());
-        user.setBlocked(userDTO.isBlocked());
-        user.setRole(roleService.getByName("ROLE_STUDENT"));
-        return userRepository.save(user);
+        return userRepository.save(transferToUser(userDTO));
+    }
+
+    @Override
+    public User update(Long id, UserDto userDto){
+        User updUser = getByUserId(id);
+        updUser.setFirstName(userDto.getFirstName());
+        updUser.setLastName(userDto.getLastName());
+        updUser.setEmail(userDto.getEmail());
+        updUser.setBlocked(userDto.isBlocked());
+        return userRepository.save(updUser);
     }
 
     @Override
     public void delete(Long id){
         userRepository.deleteById(id);
+    }
+
+    private UserDto transferToUserDto(User user){
+        UserDto userDto = new UserDto();
+        userDto.setId(user.getId());
+        userDto.setFirstName(user.getFirstName());
+        userDto.setLastName(user.getLastName());
+        userDto.setGroup(user.getUserGroup().getGroup());
+        userDto.setEmail(user.getEmail());
+        userDto.setPassword(user.getPassword());
+        userDto.setBlocked(user.isBlocked());
+        return userDto;
+    }
+    private User transferToUser(UserDto userDto){
+        User user = new User();
+        user.setId(userDto.getId());
+        user.setFirstName(userDto.getFirstName());
+        user.setLastName(userDto.getLastName());
+        user.setEmail(userDto.getEmail());
+        user.setPassword(userDto.getPassword());
+        user.setBlocked(userDto.isBlocked());
+        user.setRole(roleService.getByName("ROLE_STUDENT"));
+        user.setUserGroup(userGroupService.getByGroup(userDto.getGroup()));
+        return user;
+    }
+
+    private List<UserDto> transferToListDto(List<User> users){
+        List<UserDto> userDtos = new ArrayList<>();
+        for(User temp: users){
+            userDtos.add(transferToUserDto(temp));
+        }
+        return userDtos;
     }
 }

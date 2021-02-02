@@ -10,4 +10,5 @@ public class DisciplineDto {
     private String name;
     private String shortName;
     private String description;
+    private Long userId;
 }

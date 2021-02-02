@@ -1,4 +1,4 @@
-package by.shilay.app.dto;
+package by.shilay.app.dto.pageResponse;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;

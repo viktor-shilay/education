@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -30,7 +31,7 @@ public class Material {
     private String materialName;
 
     @Column(name = "creation_date")
-    private Date creationDate;
+    private LocalDate creationDate;
 
     @Column(name = "type")
     private String type;
