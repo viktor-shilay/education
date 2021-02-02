@@ -23,13 +23,20 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<AuthResponse> login(@RequestBody AuthRequest authRequest) {
-        AuthResponse authResponse = authService.login(authRequest);
-        return new ResponseEntity<>(authResponse, HttpStatus.OK);
+        try{
+            return new ResponseEntity<>(authService.login(authRequest), HttpStatus.OK);
+        }catch (RuntimeException ex){
+            throw new RuntimeException(ex);
+        }
     }
 
     @PostMapping("/register")
     public ResponseEntity<HttpStatus> register(@RequestBody RegistrationRequest registrationRequest) {
-        authService.register(registrationRequest);
-        return new ResponseEntity<>(HttpStatus.OK);
+        try{
+            authService.register(registrationRequest);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }catch (RuntimeException ex){
+            throw new RuntimeException(ex);
+        }
     }
 }

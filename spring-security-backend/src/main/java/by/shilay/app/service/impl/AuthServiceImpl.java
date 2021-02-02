@@ -42,7 +42,7 @@ public class AuthServiceImpl implements AuthService {
         );
         String token = jwtTokenProvider.generateJwtToken(authentication);
         User user = restTemplate.getForObject(URLConstants.USERS_URL + "/email/" + authRequest.getEmail(), User.class);
-        return new AuthResponse(token, user.getFirstName(), user.getLastName(), user.getEmail(), user.getRole().getRole());
+        return new AuthResponse(token, user.getId(), user.getFirstName(), user.getLastName(), user.getEmail(), user.getRole().getRole());
     }
 
     @Override
@@ -51,6 +51,7 @@ public class AuthServiceImpl implements AuthService {
         User user = new User();
         user.setFirstName(registrationRequest.getFirstName());
         user.setLastName(registrationRequest.getLastName());
+        user.setGroup(registrationRequest.getGroup());
         user.setEmail(registrationRequest.getEmail());
         user.setPassword(hashPassword);
         restTemplate.postForEntity(URLConstants.USERS_URL, user, User.class);

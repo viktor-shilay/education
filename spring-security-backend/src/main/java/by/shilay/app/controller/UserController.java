@@ -13,10 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
 
-@Slf4j
 @RestController
 @RequestMapping(value = "/users")
 public class UserController {
@@ -31,18 +29,8 @@ public class UserController {
     @GetMapping
     public ResponseEntity<List<User>> getAll(@RequestParam(required = false) String name) {
         try {
-            List<User> users = new ArrayList<>();
-            if (name == null){
-                users.addAll(userService.getAll());
-            }else {
-                users.addAll(userService.findByFirstNameOrLastNameContaining(name));
-            }
-            if (users.isEmpty()){
-               return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-            }
-            return new ResponseEntity<>(users, HttpStatus.OK);
+            return new ResponseEntity<>(userService.getAll(name), HttpStatus.OK);
         } catch (Exception ex) {
-            log.error("User findAll() method error {}: " + ex.getMessage());
             throw new RuntimeException(ex);
         }
     }
@@ -50,11 +38,10 @@ public class UserController {
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/{id}")
     public ResponseEntity<User> getById(@PathVariable("id") Long id) {
-        User user = userService.getById(id);
-        if (user == null) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }else {
-            return new ResponseEntity<>(user, HttpStatus.OK);
+        try{
+            return new ResponseEntity<>(userService.getById(id), HttpStatus.OK);
+        }catch (RuntimeException ex){
+            throw new RuntimeException(ex);
         }
     }
 }

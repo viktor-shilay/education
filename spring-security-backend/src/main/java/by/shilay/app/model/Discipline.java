@@ -8,4 +8,5 @@ public class Discipline {
     private String name;
     private String shortName;
     private String description;
+    private Long userId;
 }

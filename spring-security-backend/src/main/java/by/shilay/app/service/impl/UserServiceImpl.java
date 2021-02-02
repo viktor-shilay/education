@@ -3,14 +3,14 @@ package by.shilay.app.service.impl;
 import by.shilay.app.model.User;
 import by.shilay.app.config.URLConstants;
 import by.shilay.app.service.api.UserService;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
 import java.util.List;
 
-@Slf4j
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -22,13 +22,22 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> getAll() {
-        return restTemplate.getForObject(URLConstants.USERS_URL, List.class);
+    public List<User> getAll(String name){
+        List<User> users = new ArrayList<>();
+        if (name == null){
+            users.addAll(restTemplate.getForObject(URLConstants.USERS_URL, List.class));
+        }else {
+            users.addAll(restTemplate.getForObject(URLConstants.USERS_URL + "?name=" + name, List.class));
+        }
+        if (users.isEmpty()){
+            return null;
+        }
+        return users;
     }
 
     @Override
-    public List<User> findByFirstNameOrLastNameContaining(String name) {
-        return restTemplate.getForObject(URLConstants.USERS_URL + "?name=" + name, List.class);
+    public User getById(Long id) {
+        return restTemplate.getForObject(URLConstants.USERS_URL + "/" + id, User.class);
     }
 
     @Override
@@ -36,13 +45,7 @@ public class UserServiceImpl implements UserService {
         try {
             return restTemplate.getForObject(URLConstants.USERS_URL + "/email/" + email, User.class);
         } catch (Exception ex) {
-            log.error("User method getOne() error: " + ex);
             throw new RuntimeException(ex);
         }
-    }
-
-    @Override
-    public User getById(Long id) {
-        return restTemplate.getForObject(URLConstants.USERS_URL + "/" + id, User.class);
     }
 }
