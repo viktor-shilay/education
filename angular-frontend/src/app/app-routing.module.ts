@@ -27,7 +27,7 @@ const routes: Routes = [
   { path: 'professor', component: PageProfessorComponent},
   { path: 'student', component: PageStudentComponent},
   { path: 'teacher', component: PageStudentComponent},
-  { path: 'disciplines/user', component: DisciplinesListComponent}
+  { path: 'disciplines-list', component: DisciplinesListComponent}
   // { path: '**', component: NotFoundComponent},
 ];
 

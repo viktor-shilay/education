@@ -19,10 +19,15 @@ public class DisciplineServiceImpl implements DisciplineService {
         this.restTemplate = restTemplate;
     }
 
-    @Override
+    /*@Override
     public PageResponse<Discipline> getAll(int page, int size) {
         return restTemplate.getForObject(URLConstants.DISCIPLINES_URL + "?page=" + page + "&size=" + size,
                 PageResponse.class);
+    }*/
+
+    @Override
+    public List<Discipline> getAll() {
+        return restTemplate.getForObject(URLConstants.DISCIPLINES_URL, List.class);
     }
 
     @Override

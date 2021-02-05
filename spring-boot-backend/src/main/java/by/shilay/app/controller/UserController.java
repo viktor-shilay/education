@@ -60,7 +60,7 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<User> createUser(@RequestBody UserDto userDTO){
+    public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDTO){
         try{
             return new ResponseEntity<>(userService.create(userDTO), HttpStatus.OK);
         }catch (RuntimeException ex){

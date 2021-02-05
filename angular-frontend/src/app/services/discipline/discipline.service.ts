@@ -12,8 +12,12 @@ export class DisciplineService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getAll(page: number, size: number): Observable<Discipline[]>{
+  /*getAll(page: number, size: number): Observable<Discipline[]>{
     return this.httpClient.get<Discipline[]>(`${API_URL}?page=${page}&size=${size}`);
+  }*/
+
+  getAll(): Observable<Discipline[]>{
+    return this.httpClient.get<Discipline[]>(`${API_URL}`);
   }
 
   getAllByUser(id: number | undefined): Observable<Discipline[]>{
@@ -24,8 +28,8 @@ export class DisciplineService {
     return this.httpClient.post<Discipline[]>(`${API_URL}`, discipline);
   }
 
-  update(discipline: Discipline, userId: number | undefined): Observable<Discipline[]>{
-    return this.httpClient.put<Discipline[]>(`${API_URL}/${userId}`, discipline);
+  update(id: number, discipline: Discipline): Observable<Discipline[]>{
+    return this.httpClient.put<Discipline[]>(`${API_URL}/${id}`, discipline);
   }
 
 

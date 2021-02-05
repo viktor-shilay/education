@@ -30,7 +30,7 @@ public class DisciplineController {
         this.disciplineService = disciplineService;
     }
 
-    @GetMapping
+    /*@GetMapping
     public ResponseEntity<PageResponse<Discipline>> getAll(@RequestParam(defaultValue = "1") int page,
                                                            @RequestParam(defaultValue = "5") int size){
         try{
@@ -38,6 +38,11 @@ public class DisciplineController {
         }catch (Exception ex){
             throw new RuntimeException(ex);
         }
+    }*/
+
+    @GetMapping
+    public List<DisciplineDto> getAll(){
+        return disciplineService.getAll();
     }
 
     @GetMapping("/{id}")

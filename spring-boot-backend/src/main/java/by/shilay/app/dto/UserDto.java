@@ -1,6 +1,5 @@
 package by.shilay.app.dto;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data

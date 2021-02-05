@@ -8,7 +8,8 @@ import java.util.List;
 import java.util.Optional;
 
 public interface DisciplineService {
-    PageResponse<DisciplineDto> getAll(int page, int size);
+    /*PageResponse<DisciplineDto> getAll(int page, int size);*/
+    List<DisciplineDto> getAll();
     Optional<Discipline> findOne(Long id);
     List<DisciplineDto> getAllByUser(Long id);
     Discipline create(DisciplineDto disciplineDto);

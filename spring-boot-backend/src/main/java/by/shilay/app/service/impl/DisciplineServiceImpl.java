@@ -28,11 +28,16 @@ public class DisciplineServiceImpl implements DisciplineService {
         this.userService = userService;
     }
 
-    @Override
+    /*@Override
     public PageResponse<DisciplineDto> getAll(int page, int size) {
         Pageable pageable = PageRequest.of(page-1, size);
         Page<Discipline> pageDiscipline = disciplineRepository.findAll(pageable);
         return transferToPageResponse(pageDiscipline);
+    }*/
+
+    @Override
+    public List<DisciplineDto> getAll() {
+        return transferToListDto(disciplineRepository.findAll());
     }
 
     @Override

@@ -1,10 +1,10 @@
 package by.shilay.app.service.impl;
 
+import by.shilay.app.dto.UserDto;
 import by.shilay.app.model.User;
 import by.shilay.app.config.URLConstants;
 import by.shilay.app.service.api.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -47,5 +47,10 @@ public class UserServiceImpl implements UserService {
         } catch (Exception ex) {
             throw new RuntimeException(ex);
         }
+    }
+
+    @Override
+    public User create(User user) {
+        return restTemplate.postForObject(URLConstants.USERS_URL, user, User.class);
     }
 }

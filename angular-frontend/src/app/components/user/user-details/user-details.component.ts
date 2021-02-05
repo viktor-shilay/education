@@ -63,7 +63,6 @@ export class UserDetailsComponent implements OnInit {
 
   updateUser(): void {
     this.message = '';
-
     this.userService.update(this.currentUser.id, this.currentUser)
       .subscribe(
         response => {

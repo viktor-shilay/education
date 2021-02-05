@@ -20,6 +20,7 @@ import {authInterceptorProviders} from './services/auth/auth.interceptor';
 import { AddDisciplineComponent } from './components/disciplines/add-discipline/add-discipline.component';
 import { DisciplineDetailsComponent } from './components/disciplines/discipline-details/discipline-details.component';
 import { DisciplinesListComponent } from './components/disciplines/disciplines-list/disciplines-list.component';
+import { MaterialsListComponent } from './components/materials/materials-list/materials-list.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { DisciplinesListComponent } from './components/disciplines/disciplines-l
     AddDisciplineComponent,
     DisciplineDetailsComponent,
     DisciplinesListComponent,
+    MaterialsListComponent,
   ],
   imports: [
     BrowserModule,

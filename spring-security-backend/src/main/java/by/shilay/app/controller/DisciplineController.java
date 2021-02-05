@@ -28,11 +28,16 @@ public class DisciplineController {
         this.disciplineService = disciplineService;
     }
 
-    @GetMapping
+    /*@GetMapping
     public ResponseEntity<Discipline> getAll(@RequestParam (defaultValue = "0") int page,
                                              @RequestParam (defaultValue = "10") int size){
         PageResponse<Discipline> disciplines = disciplineService.getAll(page, size);
         return new ResponseEntity(disciplines, HttpStatus.OK);
+    }*/
+
+    @GetMapping
+    public List<Discipline> getAll(){
+        return disciplineService.getAll();
     }
 
     @GetMapping("/user/{id}")

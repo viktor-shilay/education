@@ -34,7 +34,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<UserDto> findByFirstNameOrLastNameContaining(String firstName, String lastName) {
-        List<User> users = userRepository.findByFirstNameOrLastNameContaining(firstName, lastName);
+        List<User> users = userRepository.findByFirstNameContainingOrLastNameContaining(firstName, lastName);
         return transferToListDto(users);
     }
 
@@ -73,8 +73,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User create(UserDto userDTO) {
-        return userRepository.save(transferToUser(userDTO));
+    public UserDto create(UserDto userDTO) {
+        return transferToUserDto(userRepository.save(transferToUser(userDTO)));
     }
 
     @Override
@@ -94,13 +94,22 @@ public class UserServiceImpl implements UserService {
 
     private UserDto transferToUserDto(User user){
         UserDto userDto = new UserDto();
-        userDto.setId(user.getId());
-        userDto.setFirstName(user.getFirstName());
-        userDto.setLastName(user.getLastName());
-        userDto.setGroup(user.getUserGroup().getGroup());
-        userDto.setEmail(user.getEmail());
-        userDto.setPassword(user.getPassword());
-        userDto.setBlocked(user.isBlocked());
+        if (user.getUserGroup() == null){
+            userDto.setId(user.getId());
+            userDto.setFirstName(user.getFirstName());
+            userDto.setLastName(user.getLastName());
+            userDto.setEmail(user.getEmail());
+            userDto.setPassword(user.getPassword());
+            userDto.setBlocked(user.isBlocked());
+        }else {
+            userDto.setId(user.getId());
+            userDto.setFirstName(user.getFirstName());
+            userDto.setLastName(user.getLastName());
+            userDto.setGroup(user.getUserGroup().getGroup());
+            userDto.setEmail(user.getEmail());
+            userDto.setPassword(user.getPassword());
+            userDto.setBlocked(user.isBlocked());
+        }
         return userDto;
     }
     private User transferToUser(UserDto userDto){
