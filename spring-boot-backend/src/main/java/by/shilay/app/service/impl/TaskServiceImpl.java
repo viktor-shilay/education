@@ -24,6 +24,13 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
+    public List<Task> getAllByMaterial(Long id) {
+        return taskRepository.findAllByMaterialId(id);
+    }
+
+
+
+    @Override
     public Task create(Task task) {
         return taskRepository.save(task);
     }

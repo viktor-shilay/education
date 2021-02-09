@@ -10,4 +10,5 @@ public interface ReviewService {
     Review create(Review review);
     List<ReviewDto> getAllByReviewer(Long id);
     List<ReviewDto> getAllByMaterialId(Long id);
+    List<ReviewDto> getAllByTask(Long id);
 }

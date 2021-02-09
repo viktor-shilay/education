@@ -1,14 +1,15 @@
 <div *ngIf="tableMode">
   <h1>List disciplines</h1>
   <input type="button" value="Add" class="btn btn-outline-primary" (click)="add()"/>
-  <table class="table table-striped">
-    <thead>
+  <table class="table table-hover">
+    <thead class="thead-light">
     <tr>
-      <td>#</td>
-      <td>Name</td>
-      <td>Short name</td>
-      <td>Description</td>
-      <td></td>
+      <th>#</th>
+      <th>Name</th>
+      <th>ShortName</th>
+      <th>Description</th>
+      <th></th>
+      <th></th>
     </tr>
     </thead>
     <tbody>
@@ -32,14 +33,13 @@
 
 <div *ngIf="materialsTable">
   <h1>Materials</h1>
-  <table class="table table-striped">
-    <thead>
+  <table class="table table-hover">
+    <thead class="thead-light">
     <tr>
-      <td>#</td>
-      <td>Material name</td>
-      <td>Type</td>
-      <td>Description</td>
-      <td></td>
+      <th>#</th>
+      <th>Material name</th>
+      <th>Type</th>
+      <th>Description</th>
     </tr>
     </thead>
     <tbody>
@@ -71,7 +71,7 @@
 </ng-template>
 
 <div *ngIf="create">
-  <h1>Create</h1>
+  <h1>Create discipline</h1>
   <div class="form-group">
     <label>Name</label>
     <input type="text" [(ngModel)]="discipline.name" class="form-control"/>

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {UserService} from '../../services/user/user.service';
+
+import {ActivatedRoute, Router} from '@angular/router';
+import {TokenStorageService} from '../../services/token/token-storage.service';
 
 @Component({
   selector: 'app-page-teacher',
@@ -7,18 +9,20 @@ import {UserService} from '../../services/user/user.service';
   styleUrls: ['./page-teacher.component.css']
 })
 export class PageTeacherComponent implements OnInit {
-  content?: string;
 
-  constructor(private userService: UserService) { }
+  id?: number;
+
+  constructor(private route: ActivatedRoute,
+              private router: Router,
+              private tokenStorageService: TokenStorageService) {
+    this.id = tokenStorageService.getUser().id;
+  }
 
   ngOnInit(): void {
-    this.userService.getTeacherPage().subscribe(
-      data => {
-        this.content = data;
-      },
-      err => {
-        this.content = JSON.parse(err.error).message;
-      }
-    );
   }
+
+  getMaterialsByAuthor(){
+    this.router.navigate([`materials/author/${this.id}`]);
+  }
+
 }

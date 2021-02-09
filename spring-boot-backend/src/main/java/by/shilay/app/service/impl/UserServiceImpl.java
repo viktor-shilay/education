@@ -94,21 +94,14 @@ public class UserServiceImpl implements UserService {
 
     private UserDto transferToUserDto(User user){
         UserDto userDto = new UserDto();
-        if (user.getUserGroup() == null){
-            userDto.setId(user.getId());
-            userDto.setFirstName(user.getFirstName());
-            userDto.setLastName(user.getLastName());
-            userDto.setEmail(user.getEmail());
-            userDto.setPassword(user.getPassword());
-            userDto.setBlocked(user.isBlocked());
-        }else {
-            userDto.setId(user.getId());
-            userDto.setFirstName(user.getFirstName());
-            userDto.setLastName(user.getLastName());
+        userDto.setId(user.getId());
+        userDto.setFirstName(user.getFirstName());
+        userDto.setLastName(user.getLastName());
+        userDto.setEmail(user.getEmail());
+        userDto.setPassword(user.getPassword());
+        userDto.setBlocked(user.isBlocked());
+        if (user.getUserGroup() != null){
             userDto.setGroup(user.getUserGroup().getGroup());
-            userDto.setEmail(user.getEmail());
-            userDto.setPassword(user.getPassword());
-            userDto.setBlocked(user.isBlocked());
         }
         return userDto;
     }

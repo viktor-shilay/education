@@ -79,6 +79,8 @@ export class DisciplinesListComponent implements OnInit {
       data => {
         this.materials = data;
         console.log(data);
+      }, error => {
+        console.log(error);
       }
     );
   }

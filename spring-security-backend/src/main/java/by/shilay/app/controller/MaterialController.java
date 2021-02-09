@@ -25,4 +25,9 @@ public class MaterialController {
     public List<Material> getAllByDiscipline(@PathVariable("id") Long id){
         return materialService.getAllByDiscipline(id);
     }
+
+    @GetMapping("/author/{id}")
+    public List<Material> getAllByAuthor(@PathVariable("id") Long id){
+        return materialService.getAllByAuthor(id);
+    }
 }

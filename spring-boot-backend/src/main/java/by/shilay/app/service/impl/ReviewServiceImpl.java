@@ -36,6 +36,12 @@ public class ReviewServiceImpl implements ReviewService {
         return transferToListDto(reviewRepository.findAllByMaterialId(id));
     }
 
+    @Override
+    public List<ReviewDto> getAllByTask(Long id) {
+        return transferToListDto(reviewRepository.findAllByTaskId(id));
+    }
+
+
     private ReviewDto transferToReviewDto(Review review){
         ReviewDto reviewDto = new ReviewDto();
         reviewDto.setId(review.getId());

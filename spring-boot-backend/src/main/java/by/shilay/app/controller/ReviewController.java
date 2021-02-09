@@ -44,6 +44,15 @@ public class ReviewController {
         }
     }
 
+    @GetMapping("/task/{id}")
+    public ResponseEntity<List<ReviewDto>> getAllByTask(@PathVariable("id") Long id){
+        try{
+            return new ResponseEntity<>(reviewService.getAllByTask(id), HttpStatus.OK);
+        }catch (Exception ex){
+            throw new RuntimeException(ex);
+        }
+    }
+
     @PostMapping
     public ResponseEntity<Review> create(@RequestBody Review review){
         try{

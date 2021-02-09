@@ -11,6 +11,8 @@ import {PageAdminComponent} from './components/page-admin/page-admin.component';
 import {PageProfessorComponent} from './components/page-professor/page-professor.component';
 import {PageStudentComponent} from './components/page-student/page-student.component';
 import {DisciplinesListComponent} from './components/disciplines/disciplines-list/disciplines-list.component';
+import {PageTeacherComponent} from './components/page-teacher/page-teacher.component';
+import {MaterialsListComponent} from './components/materials/materials-list/materials-list.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -26,8 +28,9 @@ const routes: Routes = [
   { path: 'admin', component: PageAdminComponent},
   { path: 'professor', component: PageProfessorComponent},
   { path: 'student', component: PageStudentComponent},
-  { path: 'teacher', component: PageStudentComponent},
-  { path: 'disciplines-list', component: DisciplinesListComponent}
+  { path: 'teacher', component: PageTeacherComponent},
+  { path: 'disciplines-list', component: DisciplinesListComponent},
+  { path: 'materials/author/:authorId', component: MaterialsListComponent}
   // { path: '**', component: NotFoundComponent},
 ];
 

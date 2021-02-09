@@ -30,3 +30,37 @@ label {
   -webkit-border-radius: 50%;
   border-radius: 50%;
 }
+
+.form-horizontal{
+  text-align: center;
+}
+.form-horizontal .form-group{
+  padding: 0 5px;
+  margin: 0 0 20px 0;
+  position: relative;
+}
+.form-horizontal .form-control{
+  background: #f0f0f0;
+  border: none;
+  box-shadow: none;
+  padding: 0 10px 0 45px;
+  height: 39px;
+  transition: all 0.3s ease 0s;
+}
+.form-horizontal .form-control:focus{
+  background: #e0e0e0;
+  box-shadow: none;
+  outline: 0 none;
+}
+.form-horizontal .form-group i{
+  position: absolute;
+  top: 43px;
+  left: 22px;
+  font-size: 17px;
+  color: #c8c8c8;
+  transition : all 0.5s ease 0s;
+}
+.form-horizontal .form-control:focus + i{
+  color: #00b4ef;
+}
+

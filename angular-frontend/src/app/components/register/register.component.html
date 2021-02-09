@@ -1,11 +1,13 @@
 <div class="col-md-12">
   <div class="card card-container">
     <img id="profile-img" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" class="profile-img-card"/>
-    <form *ngIf="!isSuccessful" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+    <form *ngIf="!isSuccessful" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate class="form-horizontal">
+      <div class="form-row">
       <div class="form-group">
         <label for="firstName">First Name</label>
         <input type="text" class="form-control" name="firstName"
                [(ngModel)]="form.firstName" required minlength="3" maxlength="20" #firstName="ngModel"/>
+        <i class="fa fa-user-circle-o" aria-hidden="true"></i>
         <div class="alert-danger" *ngIf="firstName.errors && f.submitted">
           <div *ngIf="firstName.errors.required">
             First name is required
@@ -22,6 +24,7 @@
         <label for="lastName">Last Name</label>
         <input type="text" class="form-control" name="lastName"
                [(ngModel)]="form.lastName" required minlength="3" maxlength="20" #lastName="ngModel"/>
+        <i class="fa fa-user-circle-o" aria-hidden="true"></i>
         <div class="alert-danger" *ngIf="lastName.errors && f.submitted">
           <div *ngIf="lastName.errors.required">
             Last name is required
@@ -34,10 +37,12 @@
           </div>
         </div>
       </div>
+      </div>
       <div class="form-group">
         <label for="group">Group</label>
-        <input type="email" class="form-control" name="email"
+        <input type="text" class="form-control" name="group"
                [(ngModel)]="form.group" required group #group="ngModel"/>
+        <i class="fa fa-users"></i>
         <div class="alert-danger" *ngIf="group.errors && f.submitted">
           <div *ngIf="group.errors.required">
             Group is required
@@ -51,6 +56,7 @@
         <label for="email">Email</label>
         <input type="email" class="form-control" name="email"
                [(ngModel)]="form.email" required email #email="ngModel"/>
+        <i class="fa fa-envelope"></i>
         <div class="alert-danger" *ngIf="email.errors && f.submitted">
           <div *ngIf="email.errors.required">
             Email is required
@@ -64,6 +70,7 @@
         <label for="password">Password</label>
         <input type="password" class="form-control" name="password"
                [(ngModel)]="form.password" required minlength="6" #password="ngModel"/>
+        <i class="fa fa-lock"></i>
         <div class="alert-danger" *ngIf="password.errors && f.submitted">
           <div *ngIf="password.errors.required">
             Password is required
@@ -74,11 +81,11 @@
         </div>
       </div>
       <div class="form-group">
-        <button class="btn btn-primary btn-block">Sign Up</button>
+        <button class="btn btn-primary btn-block">Register</button>
       </div>
 
       <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
-        Signup failed!<br />{{ errorMessage }}
+        Registration failed!<br />{{ errorMessage }}
       </div>
     </form>
 

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {Material} from '../../../models/material/material';
+import {MaterialService} from '../../../services/material/material.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-materials-list',
@@ -7,9 +10,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MaterialsListComponent implements OnInit {
 
-  constructor() { }
+  userId: number;
+  material: Material = new Material();
+  materials?: Material[];
 
-  ngOnInit(): void {
+  constructor(private route: ActivatedRoute,
+              private materialService: MaterialService) {
+    this.userId = route.snapshot.params.authorId;
+    console.log(route.snapshot.params.authorId);
   }
 
+  ngOnInit(): void {
+    this.loadMaterialsByAuthor(this.userId);
+  }
+
+  loadMaterialsByAuthor(userId: number){
+    this.materialService.getAllByAuthor(userId).subscribe(
+      data => {
+        this.materials = data;
+        console.log(data);
+      }, error => {
+        console.log(error);
+      }
+    );
+  }
 }

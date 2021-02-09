@@ -15,4 +15,8 @@ export class MaterialService {
   getAllByDiscipline(discipline: number): Observable<Material[]>{
     return this.httpClient.get<Material[]>(`${API_URL}/discipline/${discipline}`);
   }
+
+  getAllByAuthor(id: number): Observable<Material[]>{
+    return this.httpClient.get<Material[]>(`${API_URL}/author/${id}`);
+  }
 }

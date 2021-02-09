@@ -23,4 +23,9 @@ public class MaterialServiceImpl implements MaterialService {
     public List<Material> getAllByDiscipline(Long id) {
         return restTemplate.getForObject(URLConstants.MATERIALS_URL + "/discipline/" + id, List.class);
     }
+
+    @Override
+    public List<Material> getAllByAuthor(Long id) {
+        return restTemplate.getForObject(URLConstants.MATERIALS_URL + "/author/" + id, List.class);
+    }
 }
