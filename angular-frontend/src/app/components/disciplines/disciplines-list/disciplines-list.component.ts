@@ -35,6 +35,8 @@ export class DisciplinesListComponent implements OnInit {
       data => {
         this.disciplines = data;
         console.log(this.disciplines);
+      }, error => {
+        console.log(error);
       }
     );
   }

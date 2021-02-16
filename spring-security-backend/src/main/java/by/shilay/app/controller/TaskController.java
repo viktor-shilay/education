@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -32,6 +33,15 @@ public class TaskController {
             return new ResponseEntity<>(tasks, HttpStatus.OK);
         } catch (Exception ex) {
             log.error("Task getAll() method error {}: " + ex.getMessage());
+            throw new RuntimeException(ex);
+        }
+    }
+
+    @GetMapping("/user/{id}")
+    public ResponseEntity<List<Task>> getAllByUser(@PathVariable("id") Long id){
+        try{
+            return new ResponseEntity<>(taskService.getAllByUser(id), HttpStatus.OK);
+        } catch (Exception ex){
             throw new RuntimeException(ex);
         }
     }

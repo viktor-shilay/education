@@ -3,4 +3,6 @@ export class Material {
   materialName?: string;
   type?: string;
   description?: string;
+  author?: number;
+  discipline?: string;
 }

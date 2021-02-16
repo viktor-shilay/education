@@ -3,7 +3,6 @@ package by.shilay.app.controller;
 import by.shilay.app.dto.MaterialDto;
 import by.shilay.app.model.Material;
 import by.shilay.app.service.api.MaterialService;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -65,10 +64,11 @@ public class MaterialController {
     }
 
     @PostMapping
-    public ResponseEntity<Material> create(@RequestBody Material material){
+    public ResponseEntity<HttpStatus> create(@RequestBody MaterialDto materialDto){
         try{
-            return new ResponseEntity<>(materialService.create(material), HttpStatus.OK);
-        }catch (RuntimeException ex){
+            materialService.create(materialDto);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (RuntimeException ex){
             throw new RuntimeException(ex);
         }
     }

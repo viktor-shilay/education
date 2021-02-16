@@ -3,7 +3,9 @@ package by.shilay.app.service.impl;
 import by.shilay.app.dto.MaterialDto;
 import by.shilay.app.model.Material;
 import by.shilay.app.repository.MaterialRepository;
+import by.shilay.app.service.api.DisciplineService;
 import by.shilay.app.service.api.MaterialService;
+import by.shilay.app.service.api.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,10 +17,14 @@ import java.util.Optional;
 public class MaterialServiceImpl implements MaterialService {
 
     private final MaterialRepository materialRepository;
+    private final DisciplineService disciplineService;
+    private final UserService userService;
 
     @Autowired
-    public MaterialServiceImpl(MaterialRepository materialRepository) {
+    public MaterialServiceImpl(MaterialRepository materialRepository, DisciplineService disciplineService, UserService userService) {
         this.materialRepository = materialRepository;
+        this.disciplineService = disciplineService;
+        this.userService = userService;
     }
 
     @Override
@@ -28,7 +34,7 @@ public class MaterialServiceImpl implements MaterialService {
 
     @Override
     public Optional<Material> findOne(Long id) {
-        return materialRepository.findAllById(id);
+        return materialRepository.findById(id);
     }
 
     @Override
@@ -42,8 +48,8 @@ public class MaterialServiceImpl implements MaterialService {
     }
 
     @Override
-    public Material create(Material material) {
-        return materialRepository.save(material);
+    public void create(MaterialDto materialDto) {
+        materialRepository.save(transferToMaterial(materialDto));
     }
 
 
@@ -54,7 +60,19 @@ public class MaterialServiceImpl implements MaterialService {
         materialDto.setCreationDate(material.getCreationDate());
         materialDto.setType(material.getType());
         materialDto.setDescription(material.getDescription());
+        materialDto.setAuthor(material.getUser().getId());
         return materialDto;
+    }
+
+    private Material transferToMaterial(MaterialDto materialDto){
+        Material material = new Material();
+        material.setMaterialName(materialDto.getMaterialName());
+        material.setCreationDate(materialDto.getCreationDate());
+        material.setType(materialDto.getType());
+        material.setDescription(materialDto.getDescription());
+        material.setDiscipline(disciplineService.findByName(materialDto.getDiscipline()));
+        material.setUser(userService.getByUserId(materialDto.getAuthor()));
+        return material;
     }
 
     private List<MaterialDto> transferToListDto(List<Material> materials){

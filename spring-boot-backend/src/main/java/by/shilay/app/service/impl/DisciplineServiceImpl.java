@@ -46,6 +46,11 @@ public class DisciplineServiceImpl implements DisciplineService {
     }
 
     @Override
+    public Discipline findByName(String name) {
+        return disciplineRepository.findByName(name);
+    }
+
+    @Override
     public List<DisciplineDto> getAllByUser(Long id) {
         return transferToListDto((disciplineRepository.findAllByUserId(id)));
     }

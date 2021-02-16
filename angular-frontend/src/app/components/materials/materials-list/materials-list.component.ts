@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Material} from '../../../models/material/material';
 import {MaterialService} from '../../../services/material/material.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-materials-list',
@@ -11,10 +11,10 @@ import {ActivatedRoute} from '@angular/router';
 export class MaterialsListComponent implements OnInit {
 
   userId: number;
-  material: Material = new Material();
   materials?: Material[];
 
   constructor(private route: ActivatedRoute,
+              private router: Router,
               private materialService: MaterialService) {
     this.userId = route.snapshot.params.authorId;
     console.log(route.snapshot.params.authorId);
@@ -33,5 +33,9 @@ export class MaterialsListComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+
+  addMaterial(){
+    this.router.navigate(['materials/add']);
   }
 }

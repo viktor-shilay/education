@@ -1,5 +1,6 @@
 package by.shilay.app.controller;
 
+import by.shilay.app.dto.TaskDto;
 import by.shilay.app.model.Task;
 import by.shilay.app.service.api.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,11 @@ public class TaskController {
     @GetMapping("/material/{id}")
     public ResponseEntity<List<Task>> getAllByMaterial(@PathVariable("id") Long id){
         return new ResponseEntity<>(taskService.getAllByMaterial(id), HttpStatus.OK);
+    }
+
+    @GetMapping("/user/{id}")
+    public List<TaskDto> getAllByUserId(@PathVariable("id") Long id){
+        return taskService.getAllByUserId(id);
     }
 
     @PostMapping

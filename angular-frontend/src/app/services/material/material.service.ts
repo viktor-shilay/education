@@ -19,4 +19,8 @@ export class MaterialService {
   getAllByAuthor(id: number): Observable<Material[]>{
     return this.httpClient.get<Material[]>(`${API_URL}/author/${id}`);
   }
+
+  create(material: Material): Observable<Material[]>{
+    return this.httpClient.post<Material[]>(`${API_URL}`, material);
+  }
 }

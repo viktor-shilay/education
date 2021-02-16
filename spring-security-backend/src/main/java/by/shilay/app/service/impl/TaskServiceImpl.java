@@ -29,4 +29,9 @@ public class TaskServiceImpl implements TaskService {
             throw new RuntimeException(ex);
         }
     }
+
+    @Override
+    public List<Task> getAllByUser(Long id) {
+        return restTemplate.getForObject(URLConstants.TASKS_URL + "/user/" + id, List.class);
+    }
 }

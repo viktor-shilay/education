@@ -13,6 +13,9 @@ import {PageStudentComponent} from './components/page-student/page-student.compo
 import {DisciplinesListComponent} from './components/disciplines/disciplines-list/disciplines-list.component';
 import {PageTeacherComponent} from './components/page-teacher/page-teacher.component';
 import {MaterialsListComponent} from './components/materials/materials-list/materials-list.component';
+import {AddMaterialComponent} from './components/materials/add-material/add-material.component';
+import {TasksListComponent} from './components/tasks/tasks-list/tasks-list.component';
+import {AddTaskComponent} from './components/tasks/add-task/add-task.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -30,7 +33,10 @@ const routes: Routes = [
   { path: 'student', component: PageStudentComponent},
   { path: 'teacher', component: PageTeacherComponent},
   { path: 'disciplines-list', component: DisciplinesListComponent},
-  { path: 'materials/author/:authorId', component: MaterialsListComponent}
+  { path: 'materials/author/:authorId', component: MaterialsListComponent},
+  { path: 'tasks/user/:userId', component: TasksListComponent},
+  { path: 'materials/add', component: AddMaterialComponent},
+  { path: 'tasks/add', component: AddTaskComponent}
   // { path: '**', component: NotFoundComponent},
 ];
 

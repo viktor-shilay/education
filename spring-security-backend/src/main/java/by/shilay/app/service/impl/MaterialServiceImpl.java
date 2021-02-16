@@ -28,4 +28,10 @@ public class MaterialServiceImpl implements MaterialService {
     public List<Material> getAllByAuthor(Long id) {
         return restTemplate.getForObject(URLConstants.MATERIALS_URL + "/author/" + id, List.class);
     }
+
+    @Override
+    public void create(Material material) {
+        restTemplate.postForObject(URLConstants.MATERIALS_URL, material, Material.class);
+    }
+
 }

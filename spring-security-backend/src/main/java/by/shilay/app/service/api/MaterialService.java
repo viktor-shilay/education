@@ -7,4 +7,5 @@ import java.util.List;
 public interface MaterialService {
     List<Material> getAllByDiscipline(Long id);
     List<Material> getAllByAuthor(Long id);
+    void create (Material material);
 }

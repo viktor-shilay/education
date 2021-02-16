@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import {ActivatedRoute, Router} from '@angular/router';
+import {Router} from '@angular/router';
 import {TokenStorageService} from '../../services/token/token-storage.service';
 
 @Component({
@@ -12,8 +12,7 @@ export class PageTeacherComponent implements OnInit {
 
   id?: number;
 
-  constructor(private route: ActivatedRoute,
-              private router: Router,
+  constructor(private router: Router,
               private tokenStorageService: TokenStorageService) {
     this.id = tokenStorageService.getUser().id;
   }
@@ -25,4 +24,7 @@ export class PageTeacherComponent implements OnInit {
     this.router.navigate([`materials/author/${this.id}`]);
   }
 
+  getTasksByAuthor(){
+    this.router.navigate([`tasks/user/${this.id}`]);
+  }
 }

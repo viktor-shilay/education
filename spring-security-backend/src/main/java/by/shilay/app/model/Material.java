@@ -11,4 +11,6 @@ public class Material {
     private LocalDate creationDate;
     private String type;
     private String description;
+    private Long author;
+    private String discipline;
 }

@@ -21,6 +21,9 @@ import { AddDisciplineComponent } from './components/disciplines/add-discipline/
 import { DisciplineDetailsComponent } from './components/disciplines/discipline-details/discipline-details.component';
 import { DisciplinesListComponent } from './components/disciplines/disciplines-list/disciplines-list.component';
 import { MaterialsListComponent } from './components/materials/materials-list/materials-list.component';
+import { AddMaterialComponent } from './components/materials/add-material/add-material.component';
+import {TasksListComponent} from './components/tasks/tasks-list/tasks-list.component';
+import { AddTaskComponent } from './components/tasks/add-task/add-task.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +43,9 @@ import { MaterialsListComponent } from './components/materials/materials-list/ma
     DisciplineDetailsComponent,
     DisciplinesListComponent,
     MaterialsListComponent,
+    TasksListComponent,
+    AddMaterialComponent,
+    AddTaskComponent,
   ],
   imports: [
     BrowserModule,

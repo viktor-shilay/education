@@ -3,6 +3,7 @@ package by.shilay.app.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -38,7 +39,7 @@ public class Discipline {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "discipline", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "discipline", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Material> materials;
 }

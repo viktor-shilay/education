@@ -11,6 +11,7 @@ public interface DisciplineService {
     /*PageResponse<DisciplineDto> getAll(int page, int size);*/
     List<DisciplineDto> getAll();
     Optional<Discipline> findOne(Long id);
+    Discipline findByName(String name);
     List<DisciplineDto> getAllByUser(Long id);
     Discipline create(DisciplineDto disciplineDto);
     Discipline update(Long id, DisciplineDto disciplineDto);

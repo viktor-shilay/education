@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface MaterialService {
-    Material create(Material material);
+    void create(MaterialDto materialDto);
     List<Material> findAll();
     Optional<Material> findOne(Long id);
     List<MaterialDto> findByAuthor(Long author);

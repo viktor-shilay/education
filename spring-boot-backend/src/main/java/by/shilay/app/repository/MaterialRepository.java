@@ -9,7 +9,6 @@ import java.util.Optional;
 
 @Repository
 public interface MaterialRepository extends JpaRepository<Material, Long> {
-    Optional<Material> findAllById(Long id);
     List<Material> findAllByUserId(Long author);
     List<Material> findAllByDisciplineId(Long id);
 }
