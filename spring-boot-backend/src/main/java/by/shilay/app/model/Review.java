@@ -22,9 +22,6 @@ public class Review {
     @Column(name = "review_id")
     private Long id;
 
-    @Column(name = "review_status")
-    private String reviewStatus;
-
     @Column(name = "review_date")
     private LocalDate reviewDate;
 

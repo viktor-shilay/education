@@ -1,6 +1,7 @@
 package by.shilay.app.model;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
@@ -10,7 +11,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.Table;
 
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "users_tasks")
 public class UserTasks {
@@ -21,6 +23,9 @@ public class UserTasks {
     @Column(name = "grade")
     private String grade;
 
+    @Column(name = "status")
+    private String status;
+
     @ManyToOne
     @MapsId("userId")
     @JoinColumn(name = "user_id")
@@ -30,5 +35,10 @@ public class UserTasks {
     @MapsId("taskId")
     @JoinColumn(name = "task_id")
     private Task task;
+
+    @ManyToOne
+    @MapsId("studentId")
+    @JoinColumn(name = "student_id")
+    private User student;
 
 }

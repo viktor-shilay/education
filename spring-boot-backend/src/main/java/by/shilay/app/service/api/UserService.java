@@ -10,6 +10,8 @@ public interface UserService {
     List<UserDto> findAll();
     List<UserDto> findByFirstNameOrLastNameContaining(String firstName, String lastName);
     List<UserDto> getAllUsers(String name);
+    List<UserDto> getAllByRole(String role);
+    List<User> getAllByGroup(String group);
     User getByUserId(Long id);
     User getByEmail(String email);
     UserDto create(UserDto userDTO);

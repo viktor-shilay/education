@@ -10,6 +10,7 @@ public interface MaterialService {
     void create(MaterialDto materialDto);
     List<Material> findAll();
     Optional<Material> findOne(Long id);
+    Material findByName(String name);
     List<MaterialDto> findByAuthor(Long author);
     List<MaterialDto> findByDiscipline(Long id);
 }

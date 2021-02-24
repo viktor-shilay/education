@@ -41,11 +41,9 @@ public class ReviewServiceImpl implements ReviewService {
         return transferToListDto(reviewRepository.findAllByTaskId(id));
     }
 
-
     private ReviewDto transferToReviewDto(Review review){
         ReviewDto reviewDto = new ReviewDto();
         reviewDto.setId(review.getId());
-        reviewDto.setReviewStatus(review.getReviewStatus());
         reviewDto.setReviewDate(review.getReviewDate());
         reviewDto.setReview(review.getReview());
         return reviewDto;

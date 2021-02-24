@@ -6,8 +6,12 @@ import by.shilay.app.model.Task;
 import java.util.List;
 
 public interface TaskService {
+    Task getByTaskId(Long id);
+    Task getByName(String name);
     List<Task> findAll();
-    Task create(Task task);
+    void create(TaskDto taskDto);
+    void update(TaskDto taskDto);
     List<Task> getAllByMaterial(Long id);
     List<TaskDto> getAllByUserId(Long id);
+    List<TaskDto> getAllByStudentId(Long id);
 }

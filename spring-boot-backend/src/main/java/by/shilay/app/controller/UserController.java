@@ -50,6 +50,15 @@ public class UserController {
         }
     }
 
+    @GetMapping("role/{role}")
+    public ResponseEntity<List<UserDto>> getUsersByRole(@PathVariable("role") String role){
+        try{
+            return new ResponseEntity<>(userService.getAllByRole(role), HttpStatus.OK);
+        }catch (Exception ex){
+            throw new RuntimeException(ex);
+        }
+    }
+
     @GetMapping("/email/{email}")
     public ResponseEntity<User> getUserByEmail(@PathVariable("email") String email){
         try{

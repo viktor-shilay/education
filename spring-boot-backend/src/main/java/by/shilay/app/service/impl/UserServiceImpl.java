@@ -27,6 +27,7 @@ public class UserServiceImpl implements UserService {
         this.userGroupService = userGroupService;
     }
 
+    @Override
     public List<UserDto> findAll() {
         List<User> users = userRepository.findAll();
         return transferToListDto(users);
@@ -53,6 +54,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<UserDto> getAllByRole(String role) {
+        return transferToListDto(userRepository.findAllByRoleRole(role));
+    }
+
+    @Override
     public User getByUserId(Long id) {
         Optional<User> userData = userRepository.findById(id);
         if(userData.isPresent()){
@@ -70,6 +76,11 @@ public class UserServiceImpl implements UserService {
         }else {
             return null;
         }
+    }
+
+    @Override
+    public List<User> getAllByGroup(String group){
+        return userRepository.findAllByUserGroupGroup(group);
     }
 
     @Override

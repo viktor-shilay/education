@@ -11,4 +11,5 @@ import java.util.Optional;
 public interface MaterialRepository extends JpaRepository<Material, Long> {
     List<Material> findAllByUserId(Long author);
     List<Material> findAllByDisciplineId(Long id);
+    Material findByMaterialName(String name);
 }

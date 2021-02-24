@@ -38,6 +38,11 @@ public class MaterialServiceImpl implements MaterialService {
     }
 
     @Override
+    public Material findByName(String name) {
+        return materialRepository.findByMaterialName(name);
+    }
+
+    @Override
     public List<MaterialDto> findByAuthor(Long author) {
         return transferToListDto(materialRepository.findAllByUserId(author));
     }
@@ -61,6 +66,7 @@ public class MaterialServiceImpl implements MaterialService {
         materialDto.setType(material.getType());
         materialDto.setDescription(material.getDescription());
         materialDto.setAuthor(material.getUser().getId());
+        materialDto.setDiscipline(disciplineService.findOne(material.getDiscipline().getId()).get().getName());
         return materialDto;
     }
 
