@@ -6,6 +6,11 @@ export class Task {
   dueDate?: string;
   description?: string;
   materialName?: string;
+  discipline?: string;
   grade?: string;
   userId?: number;
+  group?: string;
+  status?: string;
+  studentId?: number;
+  studentLastName?: string;
 }

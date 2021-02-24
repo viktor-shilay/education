@@ -5,4 +5,5 @@ export class Material {
   description?: string;
   author?: number;
   discipline?: string;
+  status?: string;
 }

@@ -12,7 +12,7 @@ export class MaterialService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getAllByDiscipline(discipline: number): Observable<Material[]>{
+  getAllByDiscipline(discipline: number | undefined): Observable<Material[]>{
     return this.httpClient.get<Material[]>(`${API_URL}/discipline/${discipline}`);
   }
 

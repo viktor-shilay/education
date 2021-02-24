@@ -16,4 +16,16 @@ export class TaskService {
     return this.httpClient.get<Task[]>(`${API_URL}/user/${id}`);
   }
 
+  getAllByStudent(id?: number): Observable<Task[]>{
+    return this.httpClient.get<Task[]>(`${API_URL}/student/${id}`);
+  }
+
+  create(task: Task): Observable<Task[]>{
+    return this.httpClient.post<Task[]>(`${API_URL}`, task);
+  }
+
+  update(task: Task): Observable<Task[]>{
+    return this.httpClient.put<Task[]>(`${API_URL}`, task);
+  }
+
 }

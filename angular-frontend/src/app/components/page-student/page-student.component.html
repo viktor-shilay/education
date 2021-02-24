@@ -12,6 +12,7 @@
           <th>Due date</th>
           <th>Grade</th>
           <th>Description</th>
+          <th>Actions</th>
         </tr>
         </thead>
         <tbody>
@@ -19,10 +20,13 @@
           <td>{{ task.id }}</td>
           <td>{{ task.taskName }}</td>
           <td>{{ task.materialName }}</td>
-          <td></td>
+          <td>{{ task.status }}</td>
           <td>{{ task.dueDate }}</td>
           <td>{{ task.grade }}</td>
           <td>{{ task.description }}</td>
+          <td *ngIf="!task.grade">
+          <button class="btn btn-sm btn-primary" *ngIf="task.status !=='Ready for review'" (click)="update(task)">Send for review</button>
+          </td>
         </tr>
         </tbody>
       </table>
