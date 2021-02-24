@@ -34,4 +34,19 @@ public class TaskServiceImpl implements TaskService {
     public List<Task> getAllByUser(Long id) {
         return restTemplate.getForObject(URLConstants.TASKS_URL + "/user/" + id, List.class);
     }
+
+    @Override
+    public List<Task> getAllByStudent(Long id) {
+        return restTemplate.getForObject(URLConstants.TASKS_URL + "/student/" + id, List.class);
+    }
+
+    @Override
+    public void create(Task task) {
+        restTemplate.postForObject(URLConstants.TASKS_URL, task, Task.class);
+    }
+
+    @Override
+    public void update(Task task) {
+        restTemplate.put(URLConstants.TASKS_URL, task, Task.class);
+    }
 }

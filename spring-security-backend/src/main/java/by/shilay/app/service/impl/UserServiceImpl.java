@@ -1,6 +1,5 @@
 package by.shilay.app.service.impl;
 
-import by.shilay.app.dto.UserDto;
 import by.shilay.app.model.User;
 import by.shilay.app.config.URLConstants;
 import by.shilay.app.service.api.UserService;

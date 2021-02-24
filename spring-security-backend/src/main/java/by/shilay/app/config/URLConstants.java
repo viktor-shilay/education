@@ -6,5 +6,6 @@ public class URLConstants {
     public static final String DISCIPLINES_URL = "http://localhost:8080/disciplines";
     public static final String MATERIALS_URL = "http://localhost:8080/materials";
     public static final String REVIEWS_URL = "http://localhost:8080/reviews";
+    public static final String USERS_TASKS_URL = "http://localhost:8080/users-tasks";
 }
 

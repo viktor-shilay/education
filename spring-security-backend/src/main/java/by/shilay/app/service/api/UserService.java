@@ -1,6 +1,5 @@
 package by.shilay.app.service.api;
 
-import by.shilay.app.dto.UserDto;
 import by.shilay.app.model.User;
 
 import java.util.List;
